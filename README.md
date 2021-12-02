@@ -62,3 +62,13 @@ Breakdown:
 * `build` is used to refrence the exact Dockerfile to build when composing up.
 * `environment` is used to configure the image's environment variables to override the Dockerfile `ENV` setup.
 * `volumes` is used to configure the files to be passed into the image filesystem.
+
+## Docker-Compose Run
+To run the docker-compose and build the underlying Docker image can be done by executing the following:
+``` bash
+docker-compose up -d --build
+```
+or you can specify the docker-compose file is not in the direct directory with:
+``` bash
+docker-compose up -f "/path/to/file/docker-compose.yaml" -d --build"
+```
