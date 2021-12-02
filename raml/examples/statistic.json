@@ -1,0 +1,18 @@
+{
+  "gameName": "Cool game",
+  "steamID64": "12345678901234567",
+  "statistics": [
+    {
+      "name": "deaths",
+      "value": 5555
+    },
+    {
+      "name": "kills",
+      "value": 12345
+    },
+    {
+      "name": "seconds_speaking",
+      "value": 2491.74462890625
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+#%RAML 1.0 DataType
+type: object
+example: !include ../examples/profile.json
+description: This response shows different data fields pertaining to the profile for the 'steamID64' String item in the object. Some fields may not be available for a user, if the fields display 'NULL' then the profile is set to private
+
+properties:
+  steamID64: steamID64Type
+  personaName: string
+  profileUrl: string
+  avatar: string
+  level: integer
+  lastLogOff: integer
+  timeCreated: integer
+  recentlyPlayedCount: integer
+  recentlyPlayedPlaytime: integer
+  gamesOwned: integer
+  totalPlaytime: integer
+  badgeCount: integer

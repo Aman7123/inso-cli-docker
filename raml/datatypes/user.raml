@@ -1,0 +1,10 @@
+#%RAML 1.0 DataType
+type: object
+additionalProperties: false
+example: !include ../examples/user.json
+description: These fields represent information about a user object
+
+properties:
+  username: string
+  steamID64: steamID64Type
+  friendList: friendListType

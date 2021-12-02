@@ -1,0 +1,77 @@
+#%RAML 1.0 Library
+usage: This library defines traits
+types:
+  errorType: !include ../datatypes/error.raml
+traits:
+  hasRequestItem:
+    description: takes in a request body
+    body:
+      application/json:
+        type: <<type>>
+        
+  hasResponse:
+    description: defines a response for GET call
+    responses:
+      200:
+        body:
+          application/json:
+            type: 
+              <<type>>
+
+  hasCreated:
+    description: defines a response for a successful created resource call
+    responses:
+      201:
+        headers: 
+          Location:
+            description: path to newly created resource
+            type: string
+            example: http://localhost:8081/api/users/12345678901234567
+
+  hasNoContent:
+    description: function performed successfully
+    responses:
+      204:
+
+  hasBadRequest: 
+    responses:
+      400:
+        description: when request is invalid or incorrect
+        body:
+          application/json:
+            type: errorType
+            example: {message: "bad request"}
+
+  hasNotFound:
+    responses:
+      404:
+        description: when requested resource is not found
+        body:
+          application/json:
+            type: errorType
+            example: {message: "record was not found"}
+
+  hasConflict:
+    description: when trying to post the same record again
+    responses: 
+      409:
+        body: 
+          application/json:
+            type: errorType
+            example: {message: "record already exists"}
+            
+  hasUnsupportedMediaType:
+    responses:
+      415:
+        body:
+          application/json:
+            type: errorType
+            example: {message: "body data should be application/json"}
+
+  hasTitleQueryParam:
+    queryParameters:
+      title?:
+        description: Will return all games that match with this title or contains it
+        type: string
+        example: Civilization
+

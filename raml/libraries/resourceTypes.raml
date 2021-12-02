@@ -1,0 +1,43 @@
+#%RAML 1.0 Library
+usage: This library defines resource types
+uses:
+  myTraits: traits.raml
+  
+resourceTypes:
+  collection:
+    get:
+      description: "Get all <<resourcePathName>>"
+      is:  [ myTraits.hasResponse: { type: <<type>> }, myTraits.hasBadRequest]
+    post:
+      description: "Create a new <<resourcePathName|!singularize>>"
+      is: [ myTraits.hasRequestItem: { type: <<postType>> }, myTraits.hasCreated, myTraits.hasBadRequest, myTraits.hasConflict, myTraits.hasUnsupportedMediaType]
+      
+  get-only-collection:
+    get:
+      description: "Get all <<resourcePathName>>"
+      is:  [ myTraits.hasResponse: { type: <<type>> }, myTraits.hasBadRequest]
+
+  item:
+    get:
+      description: "Get a <<resourcePathName|!singularize>>"
+      is:  [ myTraits.hasResponse: { type: <<type>> }, myTraits.hasBadRequest, myTraits.hasNotFound ]
+    patch:
+      description: "Update a <<resourcePathName|!singularize>>"
+      is: [  myTraits.hasRequestItem:  { type: <<patchType>>}, myTraits.hasNoContent, myTraits.hasBadRequest, myTraits.hasNotFound]
+    delete:
+      description: "Delete this <<resourcePathName|!singularize>> from the database."
+      is: [  myTraits.hasNoContent, myTraits.hasNotFound]
+
+  item-post-delete-no-body:
+    post:
+      description: "Create a new <<resourcePathName|!singularize>>"
+      is: [myTraits.hasCreated, myTraits.hasNotFound, myTraits.hasBadRequest]
+    delete:
+      description: "Delete this <<resourcePathName|!singularize>> from the database."
+      is: [ myTraits.hasNoContent, myTraits.hasNotFound]
+         
+  post-only:
+    post:
+      description: "Create a new <<resourcePathName|!singularize>>"
+      is: [ myTraits.hasRequestItem: { type: <<postType>> }, myTraits.hasResponse: {type: <<returnType>>}, myTraits.hasBadRequest, myTraits.hasUnsupportedMediaType]
+  

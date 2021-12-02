@@ -1,0 +1,16 @@
+{
+  "gameName": "Cool game",
+  "steamID64": "12345678901234567",
+  "achievements": [
+    {
+      "name": "start_game",
+      "achieved": true,
+      "unlockTime": 1594084486
+    },
+    {
+      "name": "first_kill",
+      "achieved": false,
+      "unlockTime": 1594084486
+    }
+  ]
+}

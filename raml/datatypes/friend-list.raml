@@ -1,0 +1,10 @@
+#%RAML 1.0 DataType
+type: array
+example: !include ../examples/friend-list.json
+displayName: friends-list
+description: This list contains all recognized friends that have been added with our systems. The information for these users will be combined with any request on '/leaderboards' for the parent user
+
+items:
+  type: object
+  properties:
+    steamID64: steamID64Type

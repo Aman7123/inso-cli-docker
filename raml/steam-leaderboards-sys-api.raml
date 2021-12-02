@@ -1,0 +1,83 @@
+#%RAML 1.0
+title: steam-leaderboards-sys-api
+version: v1
+baseUri: http://localhost:8081/api/{version}/steam/
+protocols: [HTTP]
+mediaType: application/json
+
+uses:
+  myTraits: libraries/traits.raml
+  myResourceTypes: libraries/resourceTypes.raml
+types:
+  userType: !include datatypes/user.raml
+  userCreateType: !include datatypes/user-create.raml
+  userUpdateType: !include datatypes/user-update.raml
+  friendListType: !include datatypes/friend-list.raml
+  gameType: !include datatypes/game.raml
+  gameUpdateType: !include datatypes/game-update.raml
+  profileType: !include datatypes/profile.raml
+  achievementType: !include datatypes/achievement.raml
+  statisticType: !include datatypes/statistic.raml
+  steamID64Type: !include datatypes/steamID64.raml
+  appIDType: !include datatypes/appID.raml
+
+description: This API has been created to handle the heavy lifting required to gather information from the online game store called Steam. My API can manage all of your friends and gather information about a requested resource for and package in JSON.
+
+/users:
+  type:
+    myResourceTypes.collection:
+      type: userType[]
+      postType: userCreateType
+  /{steamID64}:
+    uriParameters:
+      steamID64: steamID64Type
+    type:
+      myResourceTypes.item:
+        type: userType
+        patchType: userUpdateType
+    /friends-list:
+      type:
+        myResourceTypes.get-only-collection:
+          type: friendListType
+      /{friendSteamID64}:
+        uriParameters:
+          friendSteamID64: steamID64Type
+        type:
+          myResourceTypes.item-post-delete-no-body:
+            resourcePathName: friend
+
+/games:
+  type:
+    myResourceTypes.collection:
+      type: gameType[]
+      postType: gameType
+  is: [myTraits.hasTitleQueryParam]
+  /{appID}:
+    uriParameters:
+      appID: appIDType
+    type:
+      myResourceTypes.item:
+        type: gameType
+        patchType: gameUpdateType
+
+/leaderboards/{steamID64}:
+  uriParameters:
+    steamID64: steamID64Type
+  /profiles:
+    type:
+      myResourceTypes.get-only-collection:
+        type: profileType[]
+  /statistics:
+    /games/{appID}:
+        uriParameters:
+          appID: appIDType
+        type:
+          myResourceTypes.get-only-collection:
+            type: statisticType[]
+  /achievements:
+    /games/{appID}:
+        uriParameters:
+          appID: appIDType
+        type:
+          myResourceTypes.get-only-collection:
+            type: achievementType[]   

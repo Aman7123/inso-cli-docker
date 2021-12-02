@@ -1,0 +1,18 @@
+#%RAML 1.0 DataType
+type: object
+example: !include ../examples/achievement.json
+description: This object type contains a list of personal record breaking achievements that one can earn within a game. Each game has its own achievements that will be listed inside of the array. Default array is empty and the 'gameName' will display NULL if the user does not own the game
+
+properties:
+  gameName: string
+  steamID64: steamID64Type
+  
+  achievements:
+    type: array
+    items:
+      type: object
+      properties:
+        name?: string
+        achieved?: boolean
+        unlockTime?: integer
+  

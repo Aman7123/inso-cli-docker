@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  description: |
+    This is a test API used for for Kong training.
+  version: 1.0.0
+  title: test-api
+servers:
+  - url: http://localhost:8000/kong-demo
+tags:
+  - name: Message
+    description: Message resource
+
+paths:
+  /message:
+    get:
+      tags:
+      - Message    
+      summary: A simple message string
+      description: |
+        This message string can be set by overriding the the greetings.message property by an environment variable.
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: Hello World
+        '500':
+          description: Internal Server Error
