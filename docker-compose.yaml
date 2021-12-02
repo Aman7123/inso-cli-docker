@@ -5,7 +5,7 @@ services:
     container_name: inso-cli
     image: inso-cli:latest
     # You should build the image from the Host OS through the CLI.
-    # The command: "docker build -t inso-cli:latest --build-arg $SPEC_PATH ."
+    # The command: "docker build -t inso-cli:latest --build-arg SPEC_PATH ."
     # If using in local development uncomment the following lines, correct INSO_SPEC_PATH and properly pass volumes.
     #
     # build:

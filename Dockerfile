@@ -13,5 +13,8 @@ ENV INSO_SPEC_PATH=$SPEC_PATH
 # You can copy files from the host filesystem to the VM filesystem with the below "COPY" function.
 COPY ./ /usr/local/inso-cli/
 
+# Set working directory to the root of the project.
+WORKDIR /usr/local/inso-cli/
+
 ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["inso lint spec $INSO_SPEC_PATH"]
