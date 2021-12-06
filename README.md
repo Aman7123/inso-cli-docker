@@ -1,5 +1,4 @@
 ### Insomnia Linting Docker Image
-### Created for LexisNexis
 ---
 
 ## Descriptions
